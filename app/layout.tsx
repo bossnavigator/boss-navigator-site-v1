@@ -18,7 +18,7 @@ const sourceSans = Source_Sans_3({
 })
 
 export const metadata: Metadata = {
-  title: "Empowerment Books - Financial Freedom & Business Success",
+  title: "Empowerment Books - Financial Freedom & Business Success test",
   description:
     "Transform your future with proven strategies for credit building, business formation, and entrepreneurship.",
   generator: "v0.app",
