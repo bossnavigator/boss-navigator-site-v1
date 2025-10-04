@@ -31,7 +31,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${playfair.variable} ${sourceSans.variable}`}>
-      <body className="font-sans antialiased">
+      <body>
         <CartProvider>
           {children}
           <CartModal />

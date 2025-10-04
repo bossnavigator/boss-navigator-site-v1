@@ -94,128 +94,78 @@ const books = [
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-emerald-50">
+    <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
       {/* Header */}
-      <header className="bg-white/80 backdrop-blur-sm border-b border-emerald-100 sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <div className="flex items-center justify-between">
-            <div>
-              <h1 className="text-2xl font-serif font-bold text-emerald-800">Empowerment Books</h1>
-              <p className="text-sm text-emerald-600">Transform Your Future</p>
-            </div>
-            <div className="flex items-center gap-4">
-              <Link href="/faq" className="text-emerald-600 hover:text-emerald-700 font-medium">
-                FAQ
-              </Link>
-              <Link href="/contact" className="text-emerald-600 hover:text-emerald-700 font-medium">
-                Contact
-              </Link>
-              <CartIcon />
-              <Button className="bg-emerald-600 hover:bg-emerald-700">Get Started</Button>
-            </div>
+      <header className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50">
+        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
+          <div>
+            <h1 className="text-2xl font-serif font-bold text-primary">Empowerment Books</h1>
+            <p className="text-sm text-muted-foreground">Transform Your Future</p>
           </div>
+          <CartIcon />
         </div>
       </header>
 
       {/* Hero Section */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl md:text-5xl font-serif font-bold text-slate-800 mb-6">
-            Build Your Future with
-            <span className="text-emerald-600 block">Financial Empowerment</span>
-          </h2>
-          <p className="text-xl text-slate-600 mb-8 leading-relaxed">
-            Proven strategies for credit building, business formation, and entrepreneurship. Start planning your success
-            today with our comprehensive guide collection.
-          </p>
-          <div className="flex flex-wrap justify-center gap-4">
-            <Badge variant="secondary" className="px-4 py-2 text-sm">
-              ✓ Step-by-Step Guides
-            </Badge>
-            <Badge variant="secondary" className="px-4 py-2 text-sm">
-              ✓ Real-World Templates
-            </Badge>
-            <Badge variant="secondary" className="px-4 py-2 text-sm">
-              ✓ Proven Strategies
-            </Badge>
-          </div>
-        </div>
+      <section className="container mx-auto px-4 py-16 text-center">
+        <Badge className="mb-4" variant="secondary">
+          Financial Freedom & Business Success
+        </Badge>
+        <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold mb-6 text-balance">
+          Build Your Empire with Proven Strategies
+        </h2>
+        <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto mb-8 text-pretty">
+          Discover comprehensive guides designed to help you master credit, launch successful businesses, and achieve
+          lasting financial independence.
+        </p>
       </section>
 
       {/* Books Grid */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <h3 className="text-3xl font-serif font-bold text-center text-slate-800 mb-12">Your Success Library</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {books.map((book) => (
-              <Card
-                key={book.id}
-                className="overflow-hidden hover:shadow-xl transition-shadow duration-300 border-0 shadow-lg"
-              >
-                <div className="relative h-80 bg-slate-100">
-                  <img
-                    src={book.coverImage || "/placeholder.svg"}
-                    alt={`${book.title} book cover`}
-                    className="w-full h-full object-contain rounded-t-lg p-4"
-                  />
-                </div>
-                <CardHeader className="pb-4">
-                  <CardTitle className="text-xl font-serif text-slate-800">{book.title}</CardTitle>
-                  <CardDescription className="text-slate-600 leading-relaxed">{book.description}</CardDescription>
-                </CardHeader>
-                <CardContent className="pt-0">
-                  <div className="space-y-3 mb-6">
+      <section className="container mx-auto px-4 pb-16">
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {books.map((book) => (
+            <Card key={book.id} className="overflow-hidden flex flex-col hover:shadow-lg transition-shadow">
+              <div className={`h-48 bg-gradient-to-br ${book.coverColors} relative`}>
+                <img
+                  src={book.coverImage || "/placeholder.svg"}
+                  alt={book.title}
+                  className="w-full h-full object-cover mix-blend-overlay opacity-50"
+                />
+              </div>
+              <CardHeader>
+                <CardTitle className="font-serif text-2xl">{book.title}</CardTitle>
+                <CardDescription className="text-base font-medium text-foreground/80">{book.tagline}</CardDescription>
+              </CardHeader>
+              <CardContent className="flex-1 flex flex-col">
+                <p className="text-sm text-muted-foreground mb-4">{book.description}</p>
+                <div className="mb-6">
+                  <h4 className="font-semibold mb-2 text-sm">What You'll Learn:</h4>
+                  <ul className="space-y-1">
                     {book.benefits.map((benefit, index) => (
-                      <div key={index} className="flex items-start gap-2">
-                        <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full mt-2 flex-shrink-0"></div>
-                        <span className="text-sm text-slate-700">{benefit}</span>
-                      </div>
+                      <li key={index} className="text-sm text-muted-foreground flex items-start">
+                        <span className="text-primary mr-2">✓</span>
+                        <span>{benefit}</span>
+                      </li>
                     ))}
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-2xl font-bold text-emerald-600">{book.price}</span>
-                    <Link href={`/books/${book.slug}`}>
-                      <Button className="bg-emerald-600 hover:bg-emerald-700">Get This Book</Button>
-                    </Link>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-emerald-600">
-        <div className="max-w-4xl mx-auto text-center">
-          <h3 className="text-3xl font-serif font-bold text-white mb-6">Ready to Transform Your Future?</h3>
-          <p className="text-xl text-emerald-100 mb-8">
-            Join thousands who have already started building their path to financial freedom.
-          </p>
-          <Button size="lg" className="bg-white text-emerald-600 hover:bg-emerald-50 px-8 py-3 text-lg">
-            Get All 5 Books - Save 25%
-          </Button>
+                  </ul>
+                </div>
+                <div className="mt-auto flex items-center justify-between">
+                  <span className="text-2xl font-bold text-primary">{book.price}</span>
+                  <Link href={`/books/${book.slug}`}>
+                    <Button>Learn More</Button>
+                  </Link>
+                </div>
+              </CardContent>
+            </Card>
+          ))}
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="bg-slate-800 text-white py-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto text-center">
-          <h4 className="text-2xl font-serif font-bold mb-4">Empowerment Books</h4>
-          <p className="text-slate-400 mb-6">
-            Providing practical financial education and business guidance for a brighter future.
-          </p>
-          <div className="flex justify-center gap-8 text-sm text-slate-400">
-            <a href="#" className="hover:text-white transition-colors">
-              Privacy Policy
-            </a>
-            <a href="#" className="hover:text-white transition-colors">
-              Terms of Service
-            </a>
-            <Link href="/contact" className="hover:text-white transition-colors">
-              Contact Us
-            </Link>
-          </div>
+      <footer className="border-t bg-muted/50 py-8">
+        <div className="container mx-auto px-4 text-center text-sm text-muted-foreground">
+          <p>© 2025 Empowerment Books. All rights reserved.</p>
+          <p className="mt-2">Transform your future with proven strategies for success.</p>
         </div>
       </footer>
     </div>
